@@ -2,20 +2,33 @@
 layout: default
 title: Home
 ---
-
+<section class="intro-horizontal">
+  <div class="intro-photo">
+    <img src="https://leclaireur.fnac.com/wp-content/uploads/2023/04/boruto-cicatrice.jpg" alt="Amen Kh" />
+  </div>
+  <div class="intro-content">
+    <h1 class="intro-name">Hey, I'm K-HA$H.</h1>
+    <div class="intro-socials">
+  <a href="https://github.com/Amen02kh" target="_blank" aria-label="GitHub">
+    <i class="bi bi-github"></i>
+  </a>
+  <a href="https://linkedin.com/in/your-link" target="_blank" aria-label="LinkedIn">
+    <i class="bi bi-linkedin"></i>
+  </a>
+  <a href="mailto:your.email@example.com" aria-label="Email">
+    <i class="bi bi-envelope-fill"></i>
+  </a>
+</div>
+  </div>
+</section>
 <div class="posts">
   {% for post in paginator.posts %}
-  <article class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url | relative_url }}">
-        {{ post.title }}
-      </a>
-    </h1>
-
-    <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time>
-
-    {{ post.content }}
-  </article>
+    <a href="{{ post.url | relative_url }}" class="post-card-link">
+    <article class="post-card">
+      <h2 class="post-title">{{ post.title }}</h2>
+      <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
+    </article>
+  </a>
   {% endfor %}
 </div>
 

@@ -1,0 +1,54 @@
+.intro-horizontal {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+
+  .intro-photo img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .intro-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+
+    .intro-name {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .intro-text {
+      font-size: 1.1rem;
+      color: #bbb;
+    }
+
+    .intro-socials {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+
+  a {
+    font-size: 1.6rem;
+    color: white; // default color
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #cccccc; // light gray on hover
+    }
+  }
+
+  i {
+    display: inline-block;
+  }
+}
+
+  }
+}

@@ -1,7 +1,7 @@
 # Setup
 title: K-HA$H
 url: Amen02kh.github.io
-paginate: 4
+#paginate: 4
 baseurl: ""
 permalink: pretty
 
@@ -10,7 +10,14 @@ plugins:
   - jekyll-gist
   - jekyll-paginate
   - jekyll-seo-tag
-
+  - jekyll-paginate-v2
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/:num/'
+  title: ':title - page :num'
+  sort_field: 'date'
+  sort_reverse: true
 # Optimize Jekyll
 exclude:
   - .editorconfig
@@ -42,6 +49,8 @@ version: 3.0.0
 nav:
   - title: Archive
     url: /archive
-
+  - title: Categories
+    url: /categories
   - title: About
     url: /about
+  

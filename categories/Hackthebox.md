@@ -1,7 +1,7 @@
 ---
 layout: category
 title: "HackTheBox"
-permalink: /categories/HackTheBox/
+permalink: /categories/hackthebox/
 category: HackTheBox
 pagination:
   enabled: true

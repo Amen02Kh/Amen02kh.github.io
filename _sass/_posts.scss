@@ -65,3 +65,42 @@
     }
   }
 }
+/* ===== PJPT REVIEW STYLING ===== */
+
+/* Main section titles */
+.section-title {
+  color: #1e90ff;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 0.3rem;
+  margin-top: 3rem;
+}
+
+/* Subsection titles */
+.subsection-title {
+  color: #4CAF50;
+  margin-top: 2.5rem;
+}
+
+/* Highlighted text */
+.text-highlight {
+  color: #f9a825;
+  font-weight: 600;
+}
+
+/* Callout boxes */
+.callout {
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid #1e90ff;
+  background: rgba(30, 144, 255, 0.08);
+}
+
+.callout-warning {
+  border-left-color: #e53935;
+  background: rgba(229, 57, 53, 0.08);
+}
+
+.callout-success {
+  border-left-color: #4CAF50;
+  background: rgba(76, 175, 80, 0.08);
+}

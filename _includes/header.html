@@ -6,6 +6,7 @@
 {%- assign menu = "" | split: "" -%}
 {%- for item in site.nav -%}
   {%- if item.feature and site.features[item.feature] == false %}{% continue %}{% endif -%}
+  {%- if item.url contains "#" %}{% continue %}{% endif -%}
   {%- assign menu = menu | push: item -%}
 {%- endfor -%}
 

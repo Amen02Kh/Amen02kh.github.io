@@ -1,6 +1,6 @@
 # Green "page" markers on the city map.
 # `feature` hides the marker when that switch is off in _config.yml.
-- title: Home
+- title: Garage
   url: /
   x: 50
   y: 50

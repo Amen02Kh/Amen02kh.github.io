@@ -18,7 +18,7 @@ author:
   alias: K-HA$H
   email: khamen.02@gmail.com
   tagline: Junior penetration tester, reverse engineering enjoyer and gym rat.
-  photo: ""                       # e.g. /assets/me.jpg  (leave empty for a placeholder)
+  photo: "/assets/boruto.jpg"                       # e.g. /assets/me.jpg  (leave empty for a placeholder)
   photo_caption: "last seen: on a shell"
   github: https://github.com/Amen02kh
   linkedin: https://www.linkedin.com/in/amen-allah-khalfallah/
@@ -43,6 +43,9 @@ contact:
 # "Covered By Your Grace", "Rock Salt", "Permanent Marker", "Reenie Beanie", "Gochi Hand"
 hand_font: "Covered By Your Grace"
 
+# Graffiti on the wall: 0 hides it, 0.16 is the default, 0.3 is loud
+graffiti_strength: 0.16
+
 # Left side of the footer on every page
 footer_text: "Wanted for breaking things to learn how they work."
 
@@ -56,41 +59,25 @@ features:
   cheatsheets: true
   contact: true
   city_map: true
-  pink_slips: true
+  pink_slips: false
   pursuit_log: true
   cv: true
-  graffiti: true          # faded spray paint on the wall
-  page_transitions: true  # slide between pages like the game menu (false = instant)
 
-# Game-style main menu, in order. Left/right arrow keys (or the arrow buttons)
-# move through it like the game. `icon`: car, flag, wrench, slip, badge, radio.
-# `feature` ties an item to a switch above.
+# Top navigation. `feature` ties a link to a switch above.
 nav:
-  - title: Home
-    url: /
-    icon: car
-  - title: Pursuit log
-    url: /archive/
-    icon: flag
-    feature: pursuit_log
+  - title: The list
+    url: /#list
+  - title: City map
+    url: /#map
+    feature: city_map
   - title: Cheat sheets
     url: /cheatsheets/
-    icon: wrench
     feature: cheatsheets
   - title: Pink slips
-    url: /pink-slips/
-    icon: slip
+    url: /about/#slips
     feature: pink_slips
   - title: Rap sheet
     url: /about/
-    icon: badge
-  - title: Contact
-    url: /contact/
-    icon: radio
-    feature: contact
-
-# Title above the menu, in blackletter
-menu_title: main menu
 
 # ─────────────────────────────────────────────
 #  Collections and defaults

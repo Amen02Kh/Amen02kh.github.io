@@ -1,58 +1,71 @@
-// Code
-//
-// Inline and block-level code snippets. Includes tweaks to syntax highlighted
-// snippets from Pygments/Rouge and Gist embeds.
-
-code,
-pre {
-  font-family: var(--code-font);
+/* Code blocks. site.js adds the header bar, copy button and line numbers. */
+.prose div.highlighter-rouge, .prose figure.highlight {
+  margin: 1.4em 0;
+  border: 1px solid var(--line);
+  background: #111612;
 }
-
-code {
-  font-size: 85%;
+.prose pre {
+  margin: 0;
+  padding: 14px 0;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--chalk);
+  background: transparent;
+  tab-size: 4;
 }
+.prose pre .line { display: block; }
+.prose pre code { display: block; min-width: max-content; padding: 0 20px; font: inherit; background: none; }
 
-pre {
-  display: block;
-  margin-top: 0;
-  margin-bottom: var(--spacer-3);
-  overflow: auto;
+.code-head {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 16px;
+  padding: 2px 6px 2px 14px;
+  background: #222a23;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 13px; color: var(--muted);
 }
-
-.highlight {
-  padding: var(--spacer);
-  margin-bottom: var(--spacer);
-  background-color: var(--code-bg);
-  border-radius: var(--border-radius);
-
-  pre {
-    margin-bottom: 0;
-  }
-
-  // Triple backticks (code fencing) doubles the .highlight elements
-  .highlight {
-    padding: 0;
-  }
+.code-head__info { display: flex; align-items: center; gap: 12px; }
+.code-head__file { color: var(--chalk); }
+.code-head__lang { padding: 1px 7px; border: 1px solid var(--line); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 40px; padding: 8px 10px;
+  background: none; border: 0;
+  color: var(--accent); font: inherit; font-weight: 600; cursor: pointer;
 }
+.copy-btn:hover { color: #e6ebb4; }
+.copy-btn.is-done { color: var(--green); }
 
-.rouge-table {
-  margin-bottom: 0;
-  font-size: 100%;
-
-  &,
-  td,
-  th {
-    border: 0;
-  }
-
-  .gutter {
-    vertical-align: top;
-    user-select: none;
-    opacity: .25;
-  }
+/* line numbers (only when the block has more than one line) */
+.has-lines pre code { padding: 0 20px 0 0; counter-reset: line; }
+.has-lines .line { display: block; padding-left: 60px; position: relative; }
+.has-lines .line::before {
+  counter-increment: line;
+  content: counter(line);
+  position: absolute; left: 0; width: 44px;
+  text-align: right; color: #5f6b5f;
+  user-select: none;
 }
+.line.is-marked { background: rgba(232, 176, 74, 0.14); }
+.has-lines .line.is-marked::before { color: var(--amber); }
 
-// Gist via GitHub Pages
-.gist .markdown-body {
-  padding: 15px !important;
-}
+/* terminal blocks: ```console */
+.prose .is-terminal { background: var(--ink); }
+.is-terminal .code-head { background: #1b211c; }
+.is-terminal .code-head__lang::before { content: ""; display: inline-block; width: 9px; height: 9px; margin-right: 7px; border-radius: 50%; background: #5f6b5f; vertical-align: 0; }
+.is-terminal .gp { color: var(--green); user-select: none; }
+.is-terminal .go { color: #8f998b; }
+
+/* Rouge token colours */
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .cs, .highlight .cp { color: #7f8a7c; font-style: italic; }
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt, .highlight .kc { color: var(--accent); }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr, .highlight .ss { color: var(--amber); }
+.highlight .m, .highlight .mi, .highlight .mf, .highlight .mh, .highlight .mo, .highlight .il { color: #e8a0c0; }
+.highlight .nf, .highlight .fm, .highlight .nc, .highlight .nn { color: #8fd18c; }
+.highlight .na, .highlight .nb, .highlight .bp, .highlight .nv, .highlight .vi, .highlight .vg { color: #9cc9d0; }
+.highlight .nt { color: var(--accent); }
+.highlight .o, .highlight .ow, .highlight .p { color: #c9cebe; }
+.highlight .err { color: var(--danger); background: none; }
+.highlight .gd { color: var(--danger); }
+.highlight .gi { color: var(--green); }

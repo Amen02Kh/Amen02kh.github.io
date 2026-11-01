@@ -1,70 +1,111 @@
-// Body resets
-//
-// Update the foundational and global aspects of the page.
+*, *::before, *::after { box-sizing: border-box; }
 
-* {
-  box-sizing: border-box;
-}
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   margin: 0;
-  font-family: var(--body-font);
-  font-size: var(--body-font-size);
-  line-height: var(--body-line-height);
-  color: var(--body-color);
-  background-color: var(--body-bg);
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--wall);
+  color: var(--chalk);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-// No `:visited` state is required by default (browsers will use `a`)
-a {
-  color: var(--link-color);
-
-  // `:focus` is linked to `:hover` for basic accessibility
-  &:hover,
-  &:focus {
-    color: var(--link-hover-color);
-  }
-
-  strong {
-    color: inherit;
-  }
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  margin-bottom: var(--spacer);
-  border-radius: var(--border-radius);
-}
-
-table {
-  margin-bottom: 1rem;
+/* concrete grain, fixed behind everything */
+.wall-texture {
+  position: fixed;
+  inset: 0;
   width: 100%;
-  border: 0 solid var(--border-color);
-  border-collapse: collapse;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.3;
+  pointer-events: none;
 }
 
-td,
-th {
-  padding: .25rem .5rem;
-  border-color: inherit;
-  border-style: solid;
-  border-width: 0;
-  border-bottom-width: 1px;
+/* dim spotlight on the upper part of every page */
+.wall-light {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1500px;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 60% 900px at 30% 360px, rgba(196, 206, 140, 0.17), rgba(196, 206, 140, 0) 70%);
 }
 
-th {
-  text-align: left;
+.site-main { flex: 1; }
+
+a { color: var(--chalk); }
+a:hover { color: var(--chalk-bright); }
+:focus-visible { outline: 2px dashed var(--accent); outline-offset: 4px; }
+
+img { max-width: 100%; height: auto; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+.hand { font-family: var(--hand); font-weight: 400; }
+.muted { color: var(--muted); }
+.small { font-size: 15px; }
+.lead { font-size: 20px; max-width: 56ch; margin: 14px 0 28px; }
+.stack { display: flex; flex-direction: column; gap: 8px; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
-thead th {
-  border-bottom-color: currentColor;
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 10;
+  padding: 10px 14px; background: var(--accent); color: var(--wall-deep); font-weight: 700;
+}
+.skip-link:focus { top: 12px; }
+
+/* chalk headings */
+.chalk-title {
+  margin: 0;
+  font-family: var(--hand);
+  font-weight: 400;
+  font-size: clamp(52px, 8vw, 96px);
+  line-height: 0.95;
+  color: var(--chalk-bright);
+  transform: rotate(-2deg);
+  transform-origin: left;
+}
+.chalk-heading {
+  margin: 0 0 22px;
+  font-family: var(--hand);
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 54px);
+  line-height: 1;
+  color: var(--accent);
+  transform: rotate(-2deg);
+  transform-origin: left;
+}
+.chalk-heading--small { font-size: 40px; }
+.chalk-kicker {
+  margin: 0 0 8px;
+  font-family: var(--hand);
+  font-size: 30px;
+  line-height: 1;
+  color: var(--accent);
+  transform: rotate(-2deg);
+  transform-origin: left;
 }
 
-mark {
-  padding: .15rem;
-  background-color: var(--yellow-100);
-  border-radius: .125rem;
+.section { margin-top: 88px; }
+.section--tight { margin-top: 48px; }
+.section__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; }
+.section__head .chalk-heading { margin-bottom: 18px; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: clamp(22px, 4vw, 40px);
 }

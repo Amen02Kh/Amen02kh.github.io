@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<div class="wrap page">
+  <a class="back-link" href="{{ '/cheatsheets/' | relative_url }}">All cheat sheets</a>
+  <p class="hand chalk-kicker">{{ page.stage | downcase }}</p>
+  <h1 class="chalk-title">{{ page.title }}</h1>
+  {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+  <div class="panel prose sheet">
+    {% if page.updated %}<p class="muted small">Updated {{ page.updated | date: "%b %-d, %Y" }}</p>{% endif %}
+    {{ content }}
+  </div>
+</div>

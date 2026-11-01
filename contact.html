@@ -1,0 +1,62 @@
+---
+layout: default
+title: Contact
+permalink: /contact/
+feature: contact
+description: Get in touch about jobs, collaborations or a writeup.
+---
+<div class="wrap contact">
+  <section class="contact__side" aria-labelledby="ct-h">
+    <h1 id="ct-h" class="chalk-title">call it in</h1>
+    <p class="intro__lead">Job offer, collab, a question about a writeup, or you spotted a mistake. Drop me a message.</p>
+    {% if site.contact.response_time != "" %}<p class="muted">I usually reply within {{ site.contact.response_time }}.</p>{% endif %}
+    <div class="stack contact__direct">
+      <p class="hand chalk-kicker">or reach me directly</p>
+      <a class="btn" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+      {% if site.author.linkedin %}<a class="btn" href="{{ site.author.linkedin }}">LinkedIn</a>{% endif %}
+      {% include cv-button.html %}
+    </div>
+  </section>
+
+  <section class="panel contact__form" aria-label="Contact form">
+    <form class="form" method="POST"
+          action="{% if site.contact.formspree_id != '' %}https://formspree.io/f/{{ site.contact.formspree_id }}{% else %}#{% endif %}"
+          data-contact-form
+          data-endpoint="{% if site.contact.formspree_id != '' %}https://formspree.io/f/{{ site.contact.formspree_id }}{% endif %}"
+          data-email="{{ site.author.email }}">
+      <div class="form__row">
+        <label>Your name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+      </div>
+      <label>What's it about?
+        <select name="topic">
+          <option>Job or internship opportunity</option>
+          <option>Collaboration or CTF team</option>
+          <option>Question about a writeup</option>
+          <option>Something else</option>
+        </select>
+      </label>
+      <label>Message
+        <textarea name="message" rows="7" required></textarea>
+      </label>
+      <label class="visually-hidden" aria-hidden="true">Leave this empty
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+      </label>
+      <div class="form__foot">
+        <span class="muted small">Your email is only used to reply to you.</span>
+        <button class="btn btn--primary btn--big" type="submit">Send message</button>
+      </div>
+      <p class="form__error" role="alert" hidden></p>
+    </form>
+
+    <div class="form-sent" role="status" hidden>
+      <p class="hand form-sent__title">message sent</p>
+      <p>Got it. I'll get back to you at the email you gave.</p>
+      <button class="btn" type="button" data-contact-reset>Send another</button>
+    </div>
+  </section>
+</div>

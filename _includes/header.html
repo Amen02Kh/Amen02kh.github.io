@@ -1,0 +1,24 @@
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="wordmark hand" href="{{ '/' | relative_url }}">{{ site.author.alias | default: site.title }}</a>
+    <nav class="site-nav" aria-label="Main">
+      {%- for item in site.nav %}
+        {%- if item.feature and site.features[item.feature] == false %}{% continue %}{% endif %}
+        {%- assign current = false %}
+        {%- unless item.url contains "#" %}
+          {%- if page.url == item.url %}{% assign current = true %}{% endif %}
+          {%- if item.url != "/" and page.url contains item.url %}{% assign current = true %}{% endif %}
+        {%- endunless %}
+        {%- if page.layout == "post" and item.url == "/#list" %}{% assign current = true %}{% endif %}
+        <a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}</a>
+      {%- endfor %}
+      {%- unless site.features.contact == false %}
+      <a class="btn btn--primary site-nav__cta" href="{{ '/contact/' | relative_url }}"{% if page.url == "/contact/" %} aria-current="page"{% endif %}>Contact me</a>
+      {%- endunless %}
+    </nav>
+  </div>
+  {%- if page.layout == "post" %}
+  <div class="read-progress" aria-hidden="true"><div class="read-progress__bar"></div></div>
+  {%- endif %}
+</header>

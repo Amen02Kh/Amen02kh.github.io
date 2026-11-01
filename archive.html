@@ -1,0 +1,26 @@
+---
+layout: default
+title: Pursuit log
+permalink: /archive/
+feature: pursuit_log
+---
+<div class="wrap page">
+  <p class="hand chalk-kicker">every writeup, newest first</p>
+  <h1 class="chalk-title">pursuit log</h1>
+  {%- assign years = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+  {%- for y in years %}
+  <section class="section section--tight">
+    <h2 class="chalk-heading chalk-heading--small">{{ y.name }}</h2>
+    <ol class="post-list">
+      {%- for p in y.items %}
+      <li>
+        <a class="card card--row" href="{{ p.url | relative_url }}">
+          <span class="card__title hand">{{ p.title }}</span>
+          <span class="muted small">{{ p.date | date: "%b %-d" }}{% if p.categories.first %}, {{ p.categories.first }}{% endif %}</span>
+        </a>
+      </li>
+      {%- endfor %}
+    </ol>
+  </section>
+  {%- endfor %}
+</div>

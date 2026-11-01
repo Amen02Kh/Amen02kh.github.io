@@ -1,0 +1,38 @@
+---
+layout: default
+title: Cheat sheets
+permalink: /cheatsheets/
+feature: cheatsheets
+description: The commands I keep reaching for, sorted by stage of the job.
+---
+{%- assign sheets = site.cheatsheets | sort: "title" -%}
+{%- assign stages = sheets | map: "stage" | uniq | sort -%}
+<div class="wrap page cheatsheets" data-sheet-filter>
+  <h1 class="chalk-title">cheat sheets</h1>
+  <p class="lead">The commands I keep reaching for, sorted by stage of the job. Every command copies in one click.</p>
+
+  <div class="filter-bar">
+    <label class="filter-bar__search">Search commands
+      <input type="search" placeholder="kerberoast, suid, ffuf" data-sheet-search>
+    </label>
+    <div class="filter-bar__chips" role="group" aria-label="Filter by stage">
+      <button class="chip" type="button" aria-pressed="true" data-stage="all">All</button>
+      {%- for s in stages %}
+      <button class="chip" type="button" aria-pressed="false" data-stage="{{ s | slugify }}">{{ s }}</button>
+      {%- endfor %}
+    </div>
+  </div>
+
+  <div class="card-grid card-grid--sheets">
+    {%- for sh in sheets %}
+    <a class="card sheet-card" href="{{ sh.url | relative_url }}"
+       data-stage="{{ sh.stage | slugify }}"
+       data-search="{{ sh.title | append: ' ' | append: sh.summary | append: ' ' | append: sh.content | strip_html | strip_newlines | downcase | escape }}">
+      <span class="small sheet-card__stage">{{ sh.stage }}</span>
+      <span class="hand card__title">{{ sh.title }}</span>
+      {% if sh.summary %}<span class="muted small">{{ sh.summary }}</span>{% endif %}
+    </a>
+    {%- endfor %}
+  </div>
+  <p class="panel empty-state" data-sheet-empty hidden>No sheet matches that. Try a tool name like nmap or a technique like kerberoast.</p>
+</div>

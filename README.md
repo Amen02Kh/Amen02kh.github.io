@@ -1,128 +1,102 @@
-# Dark Poole
+# K-HA$H
 
-![Dark Poole](https://user-images.githubusercontent.com/13270895/89133355-26b3af80-d4e9-11ea-81cd-eacaa9c78320.png)
+My cybersecurity blog: writeups, cheat sheets and certifications, themed after a chalk "most wanted" list on a concrete wall. Built with Jekyll and hosted on GitHub Pages.
 
-Dark Poole is a permanent dark theme of the Poole theme by [@mdo](https://github.com/mdo). I made the theme darker, inspired by [Derek Kedziora's site](https://derekkedziora.com/). Unlike default Poole that utilizes CSS media queries to activate dark mode, the theme will stay dark regardless of the user's preference.
+## Run it locally
 
-- I added a navbar that is easily customizable. Check out [Development](#development) to see how.
-- I also got rid of the "tagline" in the navbar. I think it looks cleaner without it.
-- Finally, I changed the default font size to 20px. I have 20/20 vision and still thought the original font size was too small.
+```bash
+bundle install
+python scripts/make_cards.py      # optional: share cards (pip install pillow pyyaml)
+bundle exec jekyll serve
+```
 
-That's it! I tried to be least intrusive as possible to the Poole code base.
+Then open http://localhost:4000. Pushing to `master` builds and deploys automatically (see `.github/workflows/jekyll.yml`).
 
-**I noticed that Poole's documentation is slightly outdated and misleading. This documentation will try to address most, if not all, of these issues.**
+## Add a writeup
 
+Create `_posts/YYYY-MM-DD-name.md`:
+
+```yaml
 ---
-
-## Contents
-
-- [Usage](#usage)
-- [Development](#development)
-- [Author](#author)
-- [License](#license)
-
-## Usage
-
-### 1. Install dependencies
-
-Poole is built on Jekyll and uses its built-in SCSS compiler to generate our CSS. Before getting started, you'll need to install the Jekyll gem and related dependencies:
-
-```bash
-$ gem install jekyll jekyll-gist jekyll-sitemap jekyll-seo-tag
+title: "HTB: Example"
+categories: [HackTheBox]     # decides the district on the map: Reverse, HackTheBox, Web, Certifications
+tags: [kerberoasting, adcs]  # shown as "infractions"
+rank: 9                      # its line on the list (crossed out). Leave out to keep it off the list.
+list_name: Example           # chalk text on the list: "Example . retired box"
+list_note: retired box
+heat: 4                      # difficulty, 1 to 5
+map: [72, 34]                # optional: exact pin position (x, y in %), otherwise placed automatically
+---
 ```
 
-### 2. Install bundler
+The post appears on the list, on the map, in its district page, in the Pursuit log and in the RSS feed, and gets its own share card.
 
-You must have bundler installed. If you already have bundler installed, please skip this step.
+**Only publish writeups for retired HackTheBox machines, and never exam content.**
 
-```bash
-# Update Rubygems
-$ gem update --system
-# Update bundler
-$ gem install bundler
+## Writing tips
+
+Callout, rendered as a paper note pinned to the wall:
+
+```liquid
+{% raw %}{% include callout.html title="note to self" text="Any **Markdown** here." %}{% endraw %}
 ```
 
-### 3. Running locally
+Code block with a filename and a highlighted line (the `{: ...}` line goes right after the closing fence):
 
-To see your Jekyll site with Poole applied, start a Jekyll server. In Terminal, from `/dark-poole` (or whatever your Jekyll site's root directory is named):
-
-```bash
-$ bundle exec jekyll serve
+````markdown
+```python
+import requests
+r = requests.get(url)
 ```
+{: file="exploit.py" highlight="2" }
+````
 
-Open <http://localhost:4000> in your browser, and voilà.
+Terminal block. The prompt and output are styled differently and the Copy button only copies the commands:
 
-### 4. Serving it up
+````markdown
+```console
+kali@k-hash:~$ nmap -sCV 10.10.10.10
+Starting Nmap 7.94 ...
+```
+````
 
-If you host your code on GitHub, you can use [GitHub Pages](https://pages.github.com) to host your project.
+## Switch parts of the site off
 
-1. Fork this repo and switch to the `gh-pages` branch.
-1. If you're [using a custom domain name](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages), modify the `CNAME` file to point to your new domain.
-1. If you're not using a custom domain name, **modify the `url` in `_config.yml`** to point to your GitHub Pages URL. Example: for a site hosted at `username.github.io`, use `http://username.github.io`.
-1. If you want to use your repo name as a base url, **set the `url`** to your repo link and **set the `baseurl`** to your repo name in **`_config.yml`**. Example: for site hosted on `https://username.github.io/dark-poole`, set `url` as `https://username.github.io/dark-poole` and `baseurl` as `/dark-poole`.
-1. Done! Head to your GitHub Pages URL or custom domain.
-
-No matter your production or hosting setup, be sure to verify the `baseurl` option file and `CNAME` settings. Not applying this correctly can mean broken styles on your site.
-
-### 5. Pagination for sites with base urls
-
-If you are using a base url for your site, (for example, hosted on `https://username.github.io/dark-poole`) you have to make some changes to get jekyll-pagination to work correctly:
-
-In `_config.yml`, add this line:
+In `_config.yml`, set any feature to `false`:
 
 ```yaml
-paginate_path: "/baseurl/page:num/"
+features:
+  cheatsheets: false   # gone from the menu, the map and all links
+  contact: true
+  city_map: true
+  pink_slips: true
+  pursuit_log: true
 ```
 
-In `archive.md`, add `{{ site.baseurl }}` before `{{ post.url }}`
+The section disappears from the menu, the city map and every button that links to it. Its pages show a "closed for now" notice and are hidden from search engines, so nothing breaks while it's off. Set it back to `true` and push to bring it back.
 
-```html
-<!-- Add "{{ site.baseurl }}" -->
-<li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-```
+To tie your own menu link to a switch, add `feature: <name>` to it under `nav`, then add that name to `features`.
 
-In `index.html`, remove the `prepend:`:
+## Everything else
 
-```html
-<!-- Remove "prepend:" in "prepend: relative_url" -->
-<a
-  class="pagination-item newer"
-  href="{{ paginator.previous_page_path | relative_url }}"
-  >Newer</a
->
-```
+| What | Where |
+|------|-------|
+| Name, tagline, photo, socials | `_config.yml` → `author` |
+| Handwriting font | `_config.yml` → `hand_font` |
+| Unbeaten lines on the list | `_data/targets.yml` |
+| Certifications (pink slips) | `_data/certs.yml` |
+| Districts and their pin slots | `_data/districts.yml` (add one for a new category) |
+| Page markers on the map | `_data/map_pages.yml` |
+| Rap sheet text and facts | `about.md` |
+| Cheat sheets | `_cheatsheets/*.md` (front matter `title`, `stage`, `summary`, `updated`; commands in a Markdown table, in backticks) |
+| CV | put the file at `assets/cv.pdf` (buttons appear once it exists) and set `cv.updated` in `_config.yml` |
+| Contact form | create a free form at formspree.io and paste its id into `contact.formspree_id`. Without it the form opens the visitor's email app. |
+| Navigation | `_config.yml` → `nav` |
 
-## Development
+## Share cards
 
-Poole has two branches, but only one is used for active development.
+`scripts/make_cards.py` draws a 1200×630 card for every post into `assets/cards/` (git-ignored; the workflow regenerates them on each deploy). Fonts live in `scripts/fonts/` under the SIL Open Font License. If you change `hand_font`, add that font's `.ttf` there too.
 
-- `master` for development. **All pull requests should be to submitted against `master`.**
-- `gh-pages` for hosted demo **Please avoid using this branch.**
+## Credits
 
-CSS is handled via Jeykll's built-in Sass compiler. Source Sass files are located in `_sass/`, included into `styles.scss`, and compile to `styles.css`.
-
-### Customize Navbar
-
-You can easily customize the navbar by tweaking the `_config.yml` file. Simply change the title and url of each of the nav elements, or add more. The order will be preserved in the site.
-
-```yaml
-nav:
-  - title: Blog
-    url: /archive
-
-  - title: About
-    url: /about
-```
-
-## Author
-
-**Mark Otto**
-
-- <https://github.com/mdo>
-- <https://twitter.com/mdo>
-
-## License
-
-Open sourced under the [MIT license](LICENSE.md).
-
-<3
+Fonts: Covered By Your Grace and Barlow (SIL OFL). Fan-made theme, no affiliation with any game or publisher.

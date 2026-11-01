@@ -1,8 +1,10 @@
 ---
 layout: default
 ---
-
-<article class="page">
-  <h1 class="page-title">{{ page.title }}</h1>
-  {{ content }}
-</article>
+<div class="wrap page">
+  <h1 class="chalk-title">{{ page.title | downcase }}</h1>
+  {% if page.lead %}<p class="lead">{{ page.lead }}</p>{% endif %}
+  <div class="panel prose">
+    {{ content }}
+  </div>
+</div>

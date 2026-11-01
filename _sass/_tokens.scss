@@ -1,0 +1,25 @@
+:root {
+  --wall: #222a23;
+  --wall-deep: #1a201b;
+  --panel: rgba(20, 26, 21, 0.86);
+  --panel-soft: rgba(20, 26, 21, 0.62);
+  --ink: #0d110e;
+  --line: #3a463b;
+  --line-strong: #5a685b;
+  --chalk: #dfe2d4;
+  --chalk-bright: #ffffff;
+  --chalk-dim: #b9c0ae;
+  --muted: #a7af9f;
+  --accent: #c8cf8a;     /* dim yellow-green spotlight */
+  --amber: #e8b04a;      /* writeups, heat */
+  --green: #7cc47a;      /* pages */
+  --pink: #e87aa6;       /* pink slips */
+  --danger: #ff8a7a;
+
+  --sans: Barlow, "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* --hand is set in head.html from _config.yml */
+
+  --wrap: 1180px;
+  --gutter: clamp(18px, 4vw, 32px);
+}

@@ -1,0 +1,8 @@
+<div class="wrap lost">
+  <h1 class="hand lost__title">closed for now</h1>
+  <p class="intro__lead">This part of the site is switched off at the moment. Check back later, or head back to the list.</p>
+  <div class="btn-row btn-row--center">
+    <a class="btn btn--primary" href="{{ '/#list' | relative_url }}">Back to the list</a>
+    {% unless site.features.contact == false %}<a class="btn" href="{{ '/contact/' | relative_url }}">Contact me</a>{% endunless %}
+  </div>
+</div>

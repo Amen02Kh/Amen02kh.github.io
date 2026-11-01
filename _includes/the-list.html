@@ -1,0 +1,33 @@
+{%- comment -%}
+  The chalk list. Unbeaten targets come from _data/targets.yml,
+  beaten ones from posts that set `rank:` in their front matter.
+{%- endcomment -%}
+{%- assign crossed = site.posts | where_exp: "p", "p.rank != nil" -%}
+{%- assign entries = site.data.targets | concat: crossed | sort: "rank" -%}
+{%- assign rot = "-1,0.4,-0.6,0.8,-0.3,0.5,-0.8,0.3" | split: "," -%}
+{%- assign ind = "0,6,2,10,4,14,4,18" | split: "," -%}
+{%- assign srot = "-1.2,0.9,-0.5,1.1,-0.8,0.6" | split: "," -%}
+<ol class="the-list">
+  {%- for e in entries %}
+    {%- assign k = forloop.index0 | modulo: 8 -%}
+    {%- assign sk = forloop.index0 | modulo: 6 -%}
+    {%- if e.url %}
+      {%- assign name = e.list_name | default: e.title -%}
+      {%- assign note = e.list_note -%}
+  <li class="list-line is-crossed" style="--r:{{ rot[k] }}deg;--i:{{ ind[k] }}px">
+    <a href="{{ e.url | relative_url }}">
+      <span class="list-line__rank">{{ e.rank }}</span>
+      <span class="list-line__text">{{ name }}{% if note %} . {{ note }}{% endif %}<span class="strike" aria-hidden="true" style="--sr:{{ srot[sk] }}deg"></span></span>
+      <span class="visually-hidden">(beaten, read the writeup)</span>
+    </a>
+  </li>
+    {%- else %}
+      {%- assign name = e.name -%}
+      {%- assign note = e.note -%}
+  <li class="list-line{% if forloop.first %} is-top{% endif %}" style="--r:{{ rot[k] }}deg;--i:{{ ind[k] }}px">
+    <span class="list-line__rank">{{ e.rank }}</span>
+    <span class="list-line__text">{{ name }}{% if note %} . {{ note }}{% endif %}</span>
+  </li>
+    {%- endif %}
+  {%- endfor %}
+</ol>

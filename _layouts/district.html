@@ -1,0 +1,25 @@
+---
+layout: default
+---
+{%- assign d = site.data.districts | where: "key", page.district | first -%}
+{%- assign posts = site.categories[page.district] -%}
+<div class="wrap page">
+  {% if site.features.city_map == false %}<a class="back-link" href="{{ '/#list' | relative_url }}">Back to the list</a>{% else %}<a class="back-link" href="{{ '/#map' | relative_url }}">Back to the city map</a>{% endif %}
+  <p class="hand chalk-kicker">district</p>
+  <h1 class="chalk-title">{{ d.name | default: page.district | downcase }}</h1>
+  {% if page.lead %}<p class="lead">{{ page.lead }}</p>{% endif %}
+  {%- if posts and posts.size > 0 %}
+  <ol class="post-list">
+    {%- for p in posts %}
+    <li>
+      <a class="card card--row" href="{{ p.url | relative_url }}">
+        <span class="card__title hand">{{ p.title }}</span>
+        <span class="muted small">{{ p.date | date: "%b %-d, %Y" }}{% if p.heat %}, heat {{ p.heat }}{% endif %}</span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ol>
+  {%- else %}
+  <div class="panel"><p>Nothing crossed off in this district yet. The first writeup here will show up automatically.</p></div>
+  {%- endif %}
+</div>

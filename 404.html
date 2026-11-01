@@ -1,10 +1,20 @@
 ---
 layout: default
-title: "404: Page not found"
-permalink: 404.html
+title: Page not found
+permalink: /404.html
+sitemap: false
 ---
-
-<div class="page">
-  <h1 class="page-title">404: Page not found</h1>
-  <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="{{ site.baseurl }}/">Head back home</a> to try finding it again.</p>
+<div class="wrap lost">
+  <p class="hand lost__code" aria-hidden="true">404<span class="strike"></span></p>
+  <h1 class="hand lost__title">you lost them</h1>
+  <p class="intro__lead">This page isn't on the map. It was moved, renamed, or never existed. Check the address, or head back somewhere safe.</p>
+  <div class="cooldown" aria-hidden="true">
+    <div class="cooldown__labels small muted"><span>Cooldown</span><span>Heat dropping</span></div>
+    <div class="cooldown__bars"><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+  <div class="btn-row btn-row--center">
+    <a class="btn btn--primary" href="{{ '/#list' | relative_url }}">Back to the list</a>
+    {% unless site.features.city_map == false %}<a class="btn" href="{{ '/#map' | relative_url }}">Open the city map</a>{% endunless %}
+    {% unless site.features.cheatsheets == false %}<a class="btn" href="{{ '/cheatsheets/' | relative_url }}">Cheat sheets</a>{% endunless %}
+  </div>
 </div>

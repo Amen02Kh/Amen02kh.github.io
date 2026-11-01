@@ -1,56 +1,114 @@
-# Setup
+# ─────────────────────────────────────────────
+#  Site
+# ─────────────────────────────────────────────
 title: K-HA$H
-url: Amen02kh.github.io
-#paginate: 4
+description: Writeups, cheat sheets and certifications from a junior penetration tester.
+url: "https://amen02kh.github.io"
 baseurl: ""
-permalink: pretty
+lang: en
 
-# Gems
+# Writeups live at /writeups/<file-name>/
+permalink: /writeups/:title/
+
+# ─────────────────────────────────────────────
+#  You
+# ─────────────────────────────────────────────
+author:
+  name: Amen Allah Khalfallah
+  alias: K-HA$H
+  email: khamen.02@gmail.com
+  tagline: Junior penetration tester, reverse engineering enjoyer and gym rat.
+  photo: ""                       # e.g. /assets/me.jpg  (leave empty for a placeholder)
+  photo_caption: "last seen: on a shell"
+  github: https://github.com/Amen02kh
+  linkedin: https://www.linkedin.com/in/amen-allah-khalfallah/
+
+# Drop your CV at this path. The "Download CV" buttons only appear once the file exists.
+cv:
+  path: /assets/cv.pdf
+  updated: ""                     # e.g. "Nov 2026"
+
+# Contact form: create a free form at https://formspree.io and paste its id (the part after /f/).
+# Leave empty and the form falls back to opening the visitor's email app.
+contact:
+  formspree_id: ""
+  response_time: "a couple of days"
+
+# ─────────────────────────────────────────────
+#  Theme
+# ─────────────────────────────────────────────
+# Handwriting font for the chalk text. Any of:
+# "Covered By Your Grace", "Rock Salt", "Permanent Marker", "Reenie Beanie", "Gochi Hand"
+hand_font: "Covered By Your Grace"
+
+# ─────────────────────────────────────────────
+#  Feature switches
+# ─────────────────────────────────────────────
+# Set any of these to false to switch that part of the site off.
+# It disappears from the menu, the city map and every link to it,
+# and its pages show a "closed for now" notice instead (hidden from search engines).
+features:
+  cheatsheets: true
+  contact: true
+  city_map: true
+  pink_slips: true
+  pursuit_log: true
+
+# Top navigation. `feature` ties a link to a switch above.
+nav:
+  - title: The list
+    url: /#list
+  - title: City map
+    url: /#map
+    feature: city_map
+  - title: Cheat sheets
+    url: /cheatsheets/
+    feature: cheatsheets
+  - title: Pink slips
+    url: /about/#slips
+    feature: pink_slips
+  - title: Rap sheet
+    url: /about/
+
+# ─────────────────────────────────────────────
+#  Collections and defaults
+# ─────────────────────────────────────────────
+collections:
+  cheatsheets:
+    output: true
+    permalink: /cheatsheets/:name/
+
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: post }
+  - scope: { path: "", type: cheatsheets }
+    values: { layout: cheatsheet, feature: cheatsheets }
+  - scope: { path: "" }
+    values: { layout: page }
+
+# ─────────────────────────────────────────────
+#  Build
+# ─────────────────────────────────────────────
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    disable: false
+
 plugins:
-  - jekyll-gist
-  - jekyll-paginate
   - jekyll-seo-tag
-  - jekyll-paginate-v2
-pagination:
-  enabled: true
-  per_page: 5
-  permalink: '/:num/'
-  title: ':title - page :num'
-  sort_field: 'date'
-  sort_reverse: true
-# Optimize Jekyll
+  - jekyll-redirect-from
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
 exclude:
   - .editorconfig
-  - .git
-  - .jekyll-cache
   - Gemfile
   - Gemfile.lock
   - LICENSE.md
   - README.md
-
-sass:
-  sass_dir: _sass
-  style: :compressed
-
-# Options
-
-# Replace this value and uncomment to enable Google Analytics tracking
-# ga_analytics: UA-000000-0
-
-# Specify the author for blog posts
-author:
-  name: Amen Allah Khalfallah
-  email: khamen.02@gmail.com
-
-# Custom vars
-version: 3.0.0
-
-# Navbar page list
-nav:
-  - title: Archive
-    url: /archive
-  - title: Categories
-    url: /categories
-  - title: About
-    url: /about
-  
+  - scripts
+  - vendor

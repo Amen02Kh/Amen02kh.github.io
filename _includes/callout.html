@@ -1,0 +1,8 @@
+{%- comment -%}
+  Usage in a post:
+  {% include callout.html title="note to self" text="Anything in **Markdown**." %}
+{%- endcomment -%}
+<aside class="note">
+  <p class="note__title hand">{{ include.title | default: "note to self" }}</p>
+  <div class="note__body">{{ include.text | markdownify }}</div>
+</aside>

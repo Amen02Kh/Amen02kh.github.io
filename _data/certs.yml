@@ -1,0 +1,16 @@
+# Pink slips. status: won | next | dream
+- name: PJPT
+  full_name: Practical Junior Penetration Tester
+  issuer: TCM Security
+  status: won
+  date: Dec 2025
+  verify_url: ""                       # your credential verification link
+  review_url: /writeups/PJPT_Review/   # your review post, optional
+
+- name: "[NEXT CERT]"
+  status: next
+  note: In progress
+
+- name: "[DREAM CERT]"
+  status: dream
+  note: Number one on the list

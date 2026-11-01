@@ -1,8 +1,14 @@
 ---
-layout: post
 title: PJPT Certification Review
 categories: [Certifications]
-published: true
+tags: [active-directory, exam-review, tcm-security]
+rank: 7
+list_name: PJPT
+list_note: TCM Security
+heat: 3
+redirect_from:
+  - /certifications/2025/12/14/PJPT_Review/
+  - /Certifications/2025/12/14/PJPT_Review/
 ---
 
 ![PJPT Certification](/assets/PJPT/pjpt_png.png)

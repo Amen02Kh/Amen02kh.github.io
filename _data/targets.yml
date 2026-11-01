@@ -1,0 +1,18 @@
+# Lines on the list that are NOT beaten yet.
+# Beaten lines come from posts that have a `rank` in their front matter.
+# Ranks are shared between both, so keep them unique.
+- rank: 1
+  name: "[DREAM CERT]"
+  note: the final boss
+- rank: 2
+  name: "[NEXT CERT]"
+  note: in progress
+- rank: 3
+  name: "[PRO LAB]"
+  note: HackTheBox
+- rank: 4
+  name: "[NEXT BOX]"
+  note: insane
+- rank: 5
+  name: "[NEXT CTF]"
+  note: reversing

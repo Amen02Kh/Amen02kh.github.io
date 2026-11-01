@@ -1,0 +1,4 @@
+{%- assign level = include.level | default: 0 | plus: 0 -%}
+<span class="heat{% if include.size %} heat--{{ include.size }}{% endif %}" role="img" aria-label="Heat {{ level }} of 5">
+  {%- for i in (1..5) -%}<span class="heat__bar{% if i <= level %} is-on{% endif %}"></span>{%- endfor -%}
+</span>

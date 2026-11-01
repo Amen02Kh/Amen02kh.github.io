@@ -1,0 +1,63 @@
+---
+layout: default
+---
+<div class="wrap rap">
+  <section class="rap__top" aria-labelledby="rap-h">
+    <div class="rap__side">
+      <figure class="polaroid polaroid--right">
+        {%- if site.author.photo != "" %}
+        <img src="{{ site.author.photo | relative_url }}" alt="Photo of {{ site.author.name }}">
+        {%- else %}
+        <div class="polaroid__placeholder">Add your photo in _config.yml</div>
+        {%- endif %}
+        <figcaption class="hand">{{ page.photo_caption | default: "armed with a terminal" }}</figcaption>
+      </figure>
+      <div class="stack">
+        {% include cv-button.html style="big" %}
+        {% unless site.features.contact == false %}<a class="btn" href="{{ '/contact/' | relative_url }}">Contact me</a>{% endunless %}
+        {% if site.author.github %}<a class="btn" href="{{ site.author.github }}">GitHub</a>{% endif %}
+        {% if site.author.linkedin %}<a class="btn" href="{{ site.author.linkedin }}">LinkedIn</a>{% endif %}
+        <a class="btn" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+      </div>
+    </div>
+
+    <div class="rap__main">
+      <p class="hand chalk-kicker">rap sheet</p>
+      <h1 id="rap-h" class="hand rap__name">{{ site.author.alias }}</h1>
+      <p class="intro__lead">{{ site.author.name }}. {{ site.author.tagline }}</p>
+      <div class="prose rap__bio">{{ content }}</div>
+
+      {%- if page.facts %}
+      <div class="panel">
+        <dl class="facts">
+          {%- for f in page.facts %}
+          <div><dt class="hand">{{ f.label }}</dt><dd>{{ f.value }}</dd></div>
+          {%- endfor %}
+        </dl>
+      </div>
+      {%- endif %}
+    </div>
+  </section>
+
+  {%- unless site.features.pink_slips == false %}
+  <section id="slips" class="section" aria-labelledby="slips-h">
+    <h2 id="slips-h" class="chalk-heading">pink slips</h2>
+    <p class="muted">Certifications won, and the ones still on the list.</p>
+    <div class="slips">
+      {%- for c in site.data.certs %}
+      <article class="slip slip--{{ c.status }}">
+        <p class="small slip__status">{% if c.status == "won" %}Won {{ c.date }}{% elsif c.status == "next" %}Next race{% else %}The final boss{% endif %}</p>
+        <h3 class="hand slip__name">{{ c.name }}</h3>
+        <p class="small">{% if c.full_name %}{{ c.full_name }}{% if c.issuer %}, {{ c.issuer }}{% endif %}{% else %}{{ c.note }}{% endif %}</p>
+        {%- if c.verify_url or c.review_url %}
+        <p class="slip__links">
+          {% if c.verify_url and c.verify_url != "" %}<a href="{{ c.verify_url }}">Verify</a>{% endif %}
+          {% if c.review_url and c.review_url != "" %}<a href="{{ c.review_url | relative_url }}">Read the review</a>{% endif %}
+        </p>
+        {%- endif %}
+      </article>
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endunless %}
+</div>

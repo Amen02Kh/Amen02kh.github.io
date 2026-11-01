@@ -1,0 +1,37 @@
+# Districts on the city map = post categories.
+# key:    must match the category in a post's front matter exactly
+# label:  what is written on the map
+# label_x / label_y: label position in % of the map
+# slots:  where writeups in this district are placed, in order (x, y in %).
+#         A post can also pin itself with `map: [x, y]` in its front matter.
+- key: Reverse
+  name: Reverse engineering
+  label: REVERSE
+  slug: reverse
+  label_x: 25
+  label_y: 9
+  slots: [[25, 31.7], [19, 22], [31, 24], [21, 40], [31, 38]]
+
+- key: HackTheBox
+  name: HackTheBox
+  label: HACKTHEBOX
+  slug: hackthebox
+  label_x: 74
+  label_y: 7
+  slots: [[73, 30], [66, 22], [80, 26], [69, 38], [79, 37]]
+
+- key: Web
+  name: Web and API
+  label: WEB AND API
+  slug: web
+  label_x: 13
+  label_y: 52
+  slots: [[30, 66.7], [22, 62], [36, 74], [24, 75], [33, 59]]
+
+- key: Certifications
+  name: Certifications
+  label: CERTIFICATIONS
+  slug: certifications
+  label_x: 77
+  label_y: 52
+  slots: [[70, 65], [64, 58], [74, 72], [64, 72], [72, 57]]

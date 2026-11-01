@@ -1,0 +1,66 @@
+{%- comment -%}
+  The city map. Districts come from _data/districts.yml (one per post category),
+  page markers from _data/map_pages.yml. Every marker is a link.
+{%- endcomment -%}
+<div class="city-map__scroll">
+  <div class="city-map">
+    <svg class="city-map__art" aria-hidden="true" focusable="false" viewBox="0 0 1000 600" preserveAspectRatio="none" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="1000" height="600" fill="#152022"/>
+      <path d="M0 0 H1000 V420 C950 440 905 505 830 530 C750 556 705 600 640 600 H0 Z" fill="#283028"/>
+      <ellipse cx="250" cy="190" rx="170" ry="120" fill="#303a31"/>
+      <ellipse cx="740" cy="180" rx="150" ry="110" fill="#2e3830"/>
+      <ellipse cx="270" cy="410" rx="170" ry="110" fill="#2f3930"/>
+      <ellipse cx="700" cy="390" rx="120" ry="90" fill="#303a31"/>
+      <path d="M470 0 C482 120 430 200 470 300 C510 400 600 440 670 575" stroke="#2c5458" stroke-width="16"/>
+      <path d="M470 0 C482 120 430 200 470 300 C510 400 600 440 670 575" stroke="#457d83" stroke-width="3"/>
+      <path d="M120 120 C300 60 700 60 860 140 C940 200 930 330 860 400 C760 480 600 500 450 500 C300 500 140 470 100 360 C70 260 60 170 120 120 Z" stroke="#a3aa9e" stroke-width="7"/>
+      <path d="M100 300 C300 280 650 262 900 282" stroke="#a3aa9e" stroke-width="6"/>
+      <path d="M480 70 C470 160 460 230 470 300" stroke="#a3aa9e" stroke-width="5"/>
+      <g stroke="#7d8679" stroke-width="2.5">
+        <path d="M180 140 L330 140 M180 180 L340 190 M190 225 L320 232 M205 115 L212 262 M262 112 L266 268 M312 118 L302 262"/>
+        <circle cx="250" cy="190" r="30"/>
+        <path d="M620 110 C680 150 760 130 820 170 M640 205 C700 222 780 212 840 242 M700 98 L690 262 M770 108 L780 252"/>
+        <circle cx="730" cy="180" r="22"/>
+        <path d="M160 362 L380 352 M150 410 L390 402 M170 452 L380 457 M200 330 L210 482 M270 330 L265 490 M340 330 L345 482"/>
+        <path d="M590 332 C650 352 720 342 800 362 M585 392 C650 412 720 422 780 442 M650 312 L660 472 M730 322 L720 462 M860 400 L930 372"/>
+      </g>
+    </svg>
+
+    {%- for d in site.data.districts %}
+    <a class="city-map__district" href="{{ '/districts/' | append: d.slug | append: '/' | relative_url }}" style="left:{{ d.label_x }}%;top:{{ d.label_y }}%">{{ d.label }}</a>
+      {%- assign posts = site.categories[d.key] %}
+      {%- if posts and posts.size > 0 %}
+        {%- for p in posts %}
+          {%- if p.map %}{% assign pos = p.map %}{% else %}{% assign pos = d.slots[forloop.index0] | default: d.slots.last %}{% endif %}
+    <a class="pin pin--writeup" href="{{ p.url | relative_url }}" style="left:{{ pos[0] }}%;top:{{ pos[1] }}%">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="4" y="4" width="22" height="22" rx="3" fill="#e8b04a" stroke="#1a201b" stroke-width="2"/><path d="M11 9 V21 M11 9 H20 L18 12.5 L20 16 H11" fill="none" stroke="#1a201b" stroke-width="2" stroke-linejoin="round"/></svg>
+      <span class="pin__label">{{ p.map_label | default: p.list_name | default: p.title | truncate: 28 }}</span>
+    </a>
+        {%- endfor %}
+      {%- else %}
+        {%- assign pos = d.slots.first %}
+    <span class="pin pin--empty" style="left:{{ pos[0] }}%;top:{{ pos[1] }}%">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="4" y="4" width="22" height="22" rx="3" fill="none" stroke="#a7af9f" stroke-width="2" stroke-dasharray="4 3"/></svg>
+      <span class="pin__label">No writeups yet</span>
+    </span>
+      {%- endif %}
+    {%- endfor %}
+
+    {%- for m in site.data.map_pages %}
+      {%- if m.feature and site.features[m.feature] == false %}{% continue %}{% endif %}
+    <a class="pin pin--page" href="{{ m.url | relative_url }}" style="left:{{ m.x }}%;top:{{ m.y }}%">
+      {%- if m.icon == "slip" %}
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M5 9 H25 V22 H5 Z" fill="#e87aa6" stroke="#1a201b" stroke-width="2" stroke-linejoin="round"/><path d="M9 14 H21 M9 18 H16" stroke="#1a201b" stroke-width="2"/></svg>
+      {%- else %}
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M4 14 L15 5 L26 14 V26 H4 Z" fill="#7cc47a" stroke="#1a201b" stroke-width="2" stroke-linejoin="round"/><rect x="12" y="17" width="6" height="9" fill="#1a201b"/></svg>
+      {%- endif %}
+      <span class="pin__label">{{ m.title }}</span>
+    </a>
+    {%- endfor %}
+  </div>
+</div>
+<ul class="city-map__legend">
+  <li><span class="swatch" style="background:#e8b04a"></span>Writeup</li>
+  <li><span class="swatch" style="background:#7cc47a"></span>Page</li>
+  <li><span class="swatch" style="background:#e87aa6"></span>Certifications</li>
+</ul>

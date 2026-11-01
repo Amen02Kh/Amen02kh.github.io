@@ -1,0 +1,14 @@
+{%- assign cv_file = site.static_files | where: "path", site.cv.path | first -%}
+{%- if cv_file -%}
+  {%- if include.style == "big" -%}
+  <a class="btn btn--primary btn--block cv-btn" href="{{ site.cv.path | relative_url }}" download>
+    <span>Download CV</span>
+    <span class="cv-btn__meta">PDF
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+    </span>
+  </a>
+  {%- if site.cv.updated != "" %}<p class="muted small cv-updated">Updated {{ site.cv.updated }}</p>{% endif -%}
+  {%- else -%}
+  <a class="btn" href="{{ site.cv.path | relative_url }}" download>Download CV</a>
+  {%- endif -%}
+{%- endif -%}

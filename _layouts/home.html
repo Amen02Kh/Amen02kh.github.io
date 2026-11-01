@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<div class="wrap home">
+
+  <section class="intro" aria-labelledby="intro-h">
+    <figure class="polaroid polaroid--left">
+      {%- if site.author.photo != "" %}
+      <img src="{{ site.author.photo | relative_url }}" alt="Photo of {{ site.author.name }}">
+      {%- else %}
+      <div class="polaroid__placeholder">Add your photo in _config.yml</div>
+      {%- endif %}
+      <figcaption class="hand">{{ site.author.photo_caption }}</figcaption>
+    </figure>
+    <div class="intro__text">
+      <h1 id="intro-h" class="hand intro__name">{{ site.author.alias }}</h1>
+      <p class="intro__lead">Hey, I'm {{ site.author.name }}. {{ site.author.tagline }}</p>
+      {{ content }}
+      <div class="btn-row">
+        {% if site.author.github %}<a class="btn" href="{{ site.author.github }}">GitHub</a>{% endif %}
+        {% if site.author.linkedin %}<a class="btn" href="{{ site.author.linkedin }}">LinkedIn</a>{% endif %}
+        {% include cv-button.html %}
+        <a class="btn btn--primary" href="{{ '/about/' | relative_url }}">Read my rap sheet</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="list" class="section" aria-labelledby="list-h">
+    <h2 id="list-h" class="chalk-heading">the list</h2>
+    {% include the-list.html %}
+    <p class="muted small">Crossed out means beaten and written up. Click a crossed-out line to read it.</p>
+  </section>
+
+  {%- unless site.features.city_map == false %}
+  <section id="map" class="section" aria-labelledby="map-h">
+    <div class="section__head">
+      <h2 id="map-h" class="chalk-heading">city map</h2>
+      <p class="muted small">Districts are categories. Every marker is a page.</p>
+    </div>
+    {% include city-map.html %}
+  </section>
+  {%- endunless %}
+
+</div>

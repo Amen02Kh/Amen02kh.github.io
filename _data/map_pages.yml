@@ -1,0 +1,26 @@
+# Green "page" markers on the city map.
+# `feature` hides the marker when that switch is off in _config.yml.
+- title: Home
+  url: /
+  x: 50
+  y: 50
+- title: Rap sheet
+  url: /about/
+  x: 18
+  y: 86
+- title: Pursuit log
+  url: /archive/
+  feature: pursuit_log
+  x: 60
+  y: 17
+- title: Cheat sheets
+  url: /cheatsheets/
+  feature: cheatsheets
+  x: 39
+  y: 24
+- title: Pink slips
+  url: /about/#slips
+  feature: pink_slips
+  x: 84
+  y: 72
+  icon: slip

@@ -1,10 +1,19 @@
 ---
-layout: page
-title: Who am I
+layout: rapsheet
+title: Rap sheet
+permalink: /about/
+photo_caption: armed with a terminal
+facts:
+  - label: known for
+    value: Web and API testing, Active Directory, reverse engineering
+  - label: getaway rig
+    value: "[YOUR DISTRO], Burp Suite, Ghidra, gdb"
+  - label: hangouts
+    value: HackTheBox, TryHackMe, CTF events
+  - label: currently chasing
+    value: "[NEXT CERT]"
 ---
 
-Hey! I'm **Amen Allah Khalfallah**, but you can call me <strong><em>K-HA$H<em><strong>
+[A few sentences about how you got into security, what you're working toward, and what kind of role you're looking for.]
 
-Junior Penetration Tester, Reverse Engineering enjoyer and a GymRat
-
-Let’s connect and collaborate !
+Let's connect and collaborate!

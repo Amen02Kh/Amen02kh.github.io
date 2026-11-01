@@ -63,21 +63,35 @@ features:
   pursuit_log: true
   cv: true
 
-# Top navigation. `feature` ties a link to a switch above.
+# Game-style main menu, in order. Left/right arrow keys (or the arrow buttons)
+# move through it like the game. `icon`: car, flag, wrench, slip, badge, radio.
+# `feature` ties an item to a switch above.
 nav:
-  - title: The list
-    url: /#list
-  - title: City map
-    url: /#map
-    feature: city_map
+  - title: Home
+    url: /
+    icon: car
+  - title: Pursuit log
+    url: /archive/
+    icon: flag
+    feature: pursuit_log
   - title: Cheat sheets
     url: /cheatsheets/
+    icon: wrench
     feature: cheatsheets
   - title: Pink slips
-    url: /about/#slips
+    url: /pink-slips/
+    icon: slip
     feature: pink_slips
   - title: Rap sheet
     url: /about/
+    icon: badge
+  - title: Contact
+    url: /contact/
+    icon: radio
+    feature: contact
+
+# Title above the menu, in blackletter
+menu_title: main menu
 
 # ─────────────────────────────────────────────
 #  Collections and defaults

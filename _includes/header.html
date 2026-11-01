@@ -1,22 +1,57 @@
+{%- comment -%}
+  Game-style main menu. Items come from `nav` in _config.yml (switched-off features are skipped).
+  The current page is the highlighted item; the arrows and the left/right keys go to the
+  previous/next item, and site.js plays a slide transition in that direction.
+{%- endcomment -%}
+{%- assign menu = "" | split: "" -%}
+{%- for item in site.nav -%}
+  {%- if item.feature and site.features[item.feature] == false %}{% continue %}{% endif -%}
+  {%- assign menu = menu | push: item -%}
+{%- endfor -%}
+
+{%- assign current_i = -1 -%}
+{%- for item in menu -%}
+  {%- if page.url == item.url %}{% assign current_i = forloop.index0 %}{% endif -%}
+  {%- if current_i == -1 and item.url != "/" and page.url contains item.url %}{% assign current_i = forloop.index0 %}{% endif -%}
+{%- endfor -%}
+{%- if current_i == -1 and page.layout == "post" or current_i == -1 and page.layout == "district" -%}
+  {%- for item in menu %}{% if item.url == "/archive/" %}{% assign current_i = forloop.index0 %}{% endif %}{% endfor -%}
+  {%- if current_i == -1 %}{% assign current_i = 0 %}{% endif -%}
+{%- endif -%}
+
+{%- assign last_i = menu.size | minus: 1 -%}
+{%- if current_i == -1 -%}
+  {%- assign prev_i = last_i -%}{%- assign next_i = 0 -%}
+{%- else -%}
+  {%- assign prev_i = current_i | minus: 1 -%}{%- if prev_i < 0 %}{% assign prev_i = last_i %}{% endif -%}
+  {%- assign next_i = current_i | plus: 1 -%}{%- if next_i > last_i %}{% assign next_i = 0 %}{% endif -%}
+{%- endif -%}
+
 <a class="skip-link" href="#content">Skip to content</a>
 <header class="site-header">
   <div class="wrap site-header__inner">
     <a class="wordmark hand" href="{{ '/' | relative_url }}">{{ site.author.alias | default: site.title }}</a>
-    <nav class="site-nav" aria-label="Main">
-      {%- for item in site.nav %}
-        {%- if item.feature and site.features[item.feature] == false %}{% continue %}{% endif %}
-        {%- assign current = false %}
-        {%- unless item.url contains "#" %}
-          {%- if page.url == item.url %}{% assign current = true %}{% endif %}
-          {%- if item.url != "/" and page.url contains item.url %}{% assign current = true %}{% endif %}
-        {%- endunless %}
-        {%- if page.layout == "post" and item.url == "/#list" %}{% assign current = true %}{% endif %}
-        <a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}</a>
-      {%- endfor %}
-      {% include cv-button.html style="nav" %}
-      {%- unless site.features.contact == false %}
-      <a class="btn btn--primary site-nav__cta" href="{{ '/contact/' | relative_url }}"{% if page.url == "/contact/" %} aria-current="page"{% endif %}>Contact me</a>
-      {%- endunless %}
+
+    <nav class="game-menu" aria-label="Main menu" data-game-menu data-current="{{ current_i }}">
+      <p class="game-menu__title" aria-hidden="true">{{ site.menu_title | default: "main menu" }}</p>
+      <div class="game-menu__row">
+        <a class="game-menu__arrow game-menu__arrow--prev" href="{{ menu[prev_i].url | relative_url }}" data-dir="back" aria-label="Previous: {{ menu[prev_i].title }}">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 L8 12 L15 19" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="game-menu__items">
+          {%- for item in menu %}
+          <li>
+            <a class="game-menu__item" href="{{ item.url | relative_url }}" data-index="{{ forloop.index0 }}"{% if forloop.index0 == current_i %} aria-current="page"{% endif %}>
+              <span class="game-menu__icon">{% include menu-icon.html name=item.icon %}</span>
+              <span class="game-menu__label">{{ item.title }}</span>
+            </a>
+          </li>
+          {%- endfor %}
+        </ul>
+        <a class="game-menu__arrow game-menu__arrow--next" href="{{ menu[next_i].url | relative_url }}" data-dir="forward" aria-label="Next: {{ menu[next_i].title }}">
+          <svg viewBox="0 0 54 24" aria-hidden="true"><path d="M4 5 L11 12 L4 19" /><path d="M22 5 L29 12 L22 19" /><path d="M40 5 L47 12 L40 19" /></svg>
+        </a>
+      </div>
     </nav>
   </div>
   {%- if page.layout == "post" %}

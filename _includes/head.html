@@ -22,7 +22,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ site.hand_font | default: 'Covered By Your Grace' | replace: ' ', '+' }}&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ site.hand_font | default: 'Covered By Your Grace' | replace: ' ', '+' }}&family=Pirata+One&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
   <style>:root{--hand:"{{ site.hand_font | default: 'Covered By Your Grace' }}", "Comic Sans MS", cursive;--graffiti:{{ site.graffiti_strength | default: 0.16 }};}</style>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
@@ -30,5 +30,18 @@
   <link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/atom.xml' | relative_url }}">
 
+  <script>
+    /* Runs before first paint: tells the page-switch animation which way to slide. */
+    (function () {
+      var K = "khash-nav-dir";
+      function apply(e) {
+        if (!e.viewTransition || !e.viewTransition.types) return;
+        var d = "forward"; try { d = sessionStorage.getItem(K) || "forward"; } catch (x) {}
+        e.viewTransition.types.add(d);
+      }
+      addEventListener("pageswap", apply);
+      addEventListener("pagereveal", function (e) { apply(e); try { sessionStorage.removeItem(K); } catch (x) {} });
+    })();
+  </script>
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
 </head>

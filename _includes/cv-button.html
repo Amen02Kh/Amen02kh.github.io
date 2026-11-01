@@ -1,6 +1,6 @@
 {%- comment -%}
   CV button. Uses cv.url if set, otherwise the PDF at cv.path if it exists.
-  style="big" for the rap sheet, style="nav" for the menu, nothing for a normal button.
+  style="big" for the rap sheet, nothing for a normal button.
 {%- endcomment -%}
 {%- assign cv_href = nil -%}
 {%- unless site.features.cv == false -%}
@@ -20,8 +20,6 @@
     </span>
   </a>
   {%- if site.cv.updated != "" %}<p class="muted small cv-updated">Updated {{ site.cv.updated }}</p>{% endif -%}
-  {%- elsif include.style == "nav" -%}
-  <a class="btn site-nav__cv" href="{{ cv_href }}"{% if cv_external %} target="_blank" rel="noopener"{% else %} download{% endif %}>CV</a>
   {%- else -%}
   <a class="btn" href="{{ cv_href }}"{% if cv_external %} target="_blank" rel="noopener"{% else %} download{% endif %}>{% if cv_external %}View CV{% else %}Download CV{% endif %}</a>
   {%- endif -%}

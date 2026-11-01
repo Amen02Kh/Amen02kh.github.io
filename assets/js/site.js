@@ -66,6 +66,42 @@
     return set;
   }
 
+  /* ── game menu: arrows, keyboard, slide direction ── */
+  var DIR_KEY = "khash-nav-dir";
+  var menuEl = document.querySelector("[data-game-menu]");
+  if (menuEl) {
+    var current = parseInt(menuEl.getAttribute("data-current"), 10);
+    var setDir = function (dir) { try { sessionStorage.setItem(DIR_KEY, dir); } catch (e) {} };
+
+    menuEl.querySelectorAll(".game-menu__item").forEach(function (a) {
+      a.addEventListener("click", function () {
+        var i = parseInt(a.getAttribute("data-index"), 10);
+        setDir(current >= 0 && i < current ? "back" : "forward");
+      });
+    });
+    menuEl.querySelectorAll(".game-menu__arrow").forEach(function (a) {
+      a.addEventListener("click", function () { setDir(a.getAttribute("data-dir")); });
+    });
+
+    // keep the selected item in view when the menu scrolls (small screens)
+    var sel = menuEl.querySelector('.game-menu__item[aria-current="page"]');
+    if (sel && sel.scrollIntoView) sel.scrollIntoView({ block: "nearest", inline: "center" });
+
+    // left/right arrow keys switch pages, like the game menu
+    document.addEventListener("keydown", function (e) {
+      if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      var t = e.target;
+      if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      if (t && t.closest && t.closest("pre, .city-map__scroll, .prose table")) return;
+      var arrow = menuEl.querySelector(e.key === "ArrowLeft" ? ".game-menu__arrow--prev" : ".game-menu__arrow--next");
+      if (!arrow) return;
+      e.preventDefault();
+      setDir(e.key === "ArrowLeft" ? "back" : "forward");
+      window.location.href = arrow.href;
+    });
+  }
+
   /* ── code blocks ─────────────────────── */
   document.querySelectorAll(".prose div.highlighter-rouge, .prose figure.highlight").forEach(function (block) {
     var code = block.querySelector("pre code");

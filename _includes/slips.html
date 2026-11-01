@@ -1,0 +1,15 @@
+<div class="slips">
+  {%- for c in site.data.certs %}
+  <article class="slip slip--{{ c.status }}">
+    <p class="small slip__status">{% if c.status == "won" %}Won {{ c.date }}{% elsif c.status == "next" %}Next race{% else %}The final boss{% endif %}</p>
+    <h3 class="hand slip__name">{{ c.name }}</h3>
+    <p class="small">{% if c.full_name %}{{ c.full_name }}{% if c.issuer %}, {{ c.issuer }}{% endif %}{% else %}{{ c.note }}{% endif %}</p>
+    {%- if c.verify_url or c.review_url %}
+    <p class="slip__links">
+      {% if c.verify_url and c.verify_url != "" %}<a href="{{ c.verify_url }}">Verify</a>{% endif %}
+      {% if c.review_url and c.review_url != "" %}<a href="{{ c.review_url | relative_url }}">Read the review</a>{% endif %}
+    </p>
+    {%- endif %}
+  </article>
+  {%- endfor %}
+</div>

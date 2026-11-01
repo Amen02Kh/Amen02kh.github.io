@@ -60,6 +60,10 @@ Starting Nmap 7.94 ...
 ```
 ````
 
+## The main menu
+
+The game-style menu at the top is built from `nav` in `_config.yml`: reorder the items, rename them, or change their `icon` (car, flag, wrench, slip, badge, radio). The current page is the highlighted one. Visitors can click an item, use the arrow buttons, or press the **left and right arrow keys** to move through it, and the page slides in that direction (in Chrome, Edge and Safari 18.2+; other browsers just load the page). The blackletter title above it is `menu_title`.
+
 ## Switch parts of the site off
 
 In `_config.yml`, set any feature to `false`:
@@ -84,7 +88,7 @@ To tie your own menu link to a switch, add `feature: <name>` to it under `nav`, 
 |------|-------|
 | Name, tagline, photo, socials | `_config.yml` → `author` |
 | Handwriting font | `_config.yml` → `hand_font` |
-| Footer phrase | `_config.yml` → `footer_text` |
+| Footer phrase (between the two flames) | `_config.yml` → `footer_text` |
 | Graffiti on the wall | `_config.yml` → `graffiti_strength` (0 hides it), artwork in `assets/img/graffiti.svg` |
 | Unbeaten lines on the list | `_data/targets.yml` |
 | Certifications (pink slips) | `_data/certs.yml` |
@@ -92,7 +96,7 @@ To tie your own menu link to a switch, add `feature: <name>` to it under `nav`, 
 | Page markers on the map | `_data/map_pages.yml` |
 | Rap sheet text and facts | `about.md` |
 | Cheat sheets | `_cheatsheets/*.md` (front matter `title`, `stage`, `summary`, `updated`; commands in a Markdown table, in backticks) |
-| CV | put the PDF at `assets/cv.pdf`, or paste a link into `cv.url` in `_config.yml`. A **CV** button then appears in the menu, on the home page, the rap sheet and the contact page. Nothing shows until one of them is set. |
+| CV | put the PDF at `assets/cv.pdf`, or paste a link into `cv.url` in `_config.yml`. A **CV** button then appears on the home page, the rap sheet and the contact page. Nothing shows until one of them is set. |
 | Contact form | create a free form at formspree.io and paste its id into `contact.formspree_id`. Without it the form opens the visitor's email app. |
 | Navigation | `_config.yml` → `nav` |
 

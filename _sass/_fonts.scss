@@ -1,0 +1,8 @@
+/* Self-hosted fonts (SIL Open Font License, see assets/fonts/OFL-*.txt).
+   Same-origin and cached after the first visit, so page switches don't wait on Google Fonts. */
+@font-face { font-family: "Barlow"; font-weight: 400; font-style: normal; font-display: swap; src: url("../fonts/Barlow-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-weight: 500 600; font-style: normal; font-display: swap; src: url("../fonts/Barlow-SemiBold.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-weight: 700 900; font-style: normal; font-display: swap; src: url("../fonts/Barlow-Bold.woff2") format("woff2"); }
+@font-face { font-family: "Covered By Your Grace"; font-weight: 400; font-display: swap; src: url("../fonts/CoveredByYourGrace.woff2") format("woff2"); }
+@font-face { font-family: "Pirata One"; font-weight: 400; font-display: swap; src: url("../fonts/PirataOne-Regular.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 100 800; font-style: normal; font-display: swap; src: url("../fonts/JetBrainsMono.woff2") format("woff2"); }

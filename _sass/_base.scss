@@ -17,15 +17,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* concrete grain, fixed behind everything */
+/* concrete grain, fixed behind everything (a pre-rendered tile: cheap to paint) */
 .wall-texture {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
   z-index: -1;
-  opacity: 0.3;
   pointer-events: none;
+  background: url("../img/concrete.png") repeat;
+  background-size: 256px 256px;
 }
 
 /* dim spotlight on the upper part of every page */
@@ -41,14 +40,13 @@ body {
 
 /* faded spray paint on the wall */
 .wall-graffiti {
-  position: absolute;
+  position: fixed;            /* painted once per screen, not for the whole page height */
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-repeat: repeat;
+  background: url("../img/graffiti.png") repeat;
   background-size: 1400px auto;
   background-position: center top;
-  opacity: var(--graffiti, 0.16);
 }
 
 .site-main { flex: 1; }

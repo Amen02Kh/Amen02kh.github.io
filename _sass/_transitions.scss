@@ -1,35 +1,24 @@
 /* Page switches like the game menu: the page slides out and the next one slides in,
-   in the direction you moved through the menu. Uses cross-document View Transitions
-   (Chrome/Edge, Safari 18.2+); other browsers simply load the page normally. */
-@view-transition { navigation: auto; }
+   in the direction you moved through the menu. Cross-document View Transitions
+   (Chrome/Edge, Safari 18.2+), switched on from head.html via features.page_transitions.
+   Only the menu gets its own snapshot; everything else moves as one screen-sized image,
+   which keeps the switch cheap even on long pages. */
 
 .site-header { view-transition-name: menu; }
-.site-main { view-transition-name: page; }
-.site-footer { view-transition-name: footer; }
 
-/* the menu and footer swap instantly, so the old selection never shows through */
-::view-transition-old(menu), ::view-transition-old(footer) { display: none; }
-::view-transition-new(menu), ::view-transition-new(footer) { animation: none; }
+/* the menu swaps instantly, so the old selection never shows through */
+::view-transition-old(menu) { display: none; }
+::view-transition-new(menu) { animation: none; }
 
-::view-transition-old(page) { animation: 240ms cubic-bezier(.5, 0, .9, .4) both page-out-left; }
-::view-transition-new(page) { animation: 320ms cubic-bezier(.1, .6, .3, 1) 60ms both page-in-right; }
+::view-transition-old(root) { animation: 110ms cubic-bezier(.5, 0, .9, .4) both page-out-left; }
+::view-transition-new(root) { animation: 170ms cubic-bezier(.1, .6, .3, 1) both page-in-right; }
+html:active-view-transition-type(back)::view-transition-old(root) { animation-name: page-out-right; }
+html:active-view-transition-type(back)::view-transition-new(root) { animation-name: page-in-left; }
 
-html:active-view-transition-type(back)::view-transition-old(page) { animation-name: page-out-right; }
-html:active-view-transition-type(back)::view-transition-new(page) { animation-name: page-in-left; }
-
-/* amber speed streak across the screen during the switch */
-::view-transition-group(root) { animation-duration: 320ms; }
-html::view-transition-new(root) { animation: 320ms ease-out both streak; }
-
-@keyframes page-out-left  { to   { opacity: 0; transform: translateX(-14%) skewX(-8deg); filter: blur(6px); } }
-@keyframes page-out-right { to   { opacity: 0; transform: translateX(14%) skewX(8deg);  filter: blur(6px); } }
-@keyframes page-in-right  { from { opacity: 0; transform: translateX(14%) skewX(-8deg); filter: blur(6px); } }
-@keyframes page-in-left   { from { opacity: 0; transform: translateX(-14%) skewX(8deg); filter: blur(6px); } }
-@keyframes streak {
-  from { box-shadow: inset 0 0 0 0 rgba(232, 176, 74, 0); }
-  40%  { box-shadow: inset 0 -3px 0 0 rgba(232, 176, 74, 0.6); }
-  to   { box-shadow: inset 0 0 0 0 rgba(232, 176, 74, 0); }
-}
+@keyframes page-out-left  { to   { opacity: 0; transform: translateX(-5%) skewX(-5deg); } }
+@keyframes page-out-right { to   { opacity: 0; transform: translateX(5%) skewX(5deg); } }
+@keyframes page-in-right  { from { opacity: 0; transform: translateX(5%) skewX(-5deg); } }
+@keyframes page-in-left   { from { opacity: 0; transform: translateX(-5%) skewX(5deg); } }
 
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }

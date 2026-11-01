@@ -43,9 +43,6 @@ contact:
 # "Covered By Your Grace", "Rock Salt", "Permanent Marker", "Reenie Beanie", "Gochi Hand"
 hand_font: "Covered By Your Grace"
 
-# Graffiti on the wall: 0 hides it, 0.16 is the default, 0.3 is loud
-graffiti_strength: 0.16
-
 # Left side of the footer on every page
 footer_text: "Wanted for breaking things to learn how they work."
 
@@ -62,6 +59,8 @@ features:
   pink_slips: true
   pursuit_log: true
   cv: true
+  graffiti: true          # faded spray paint on the wall
+  page_transitions: true  # slide between pages like the game menu (false = instant)
 
 # Game-style main menu, in order. Left/right arrow keys (or the arrow buttons)
 # move through it like the game. `icon`: car, flag, wrench, slip, badge, radio.

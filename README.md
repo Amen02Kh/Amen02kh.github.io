@@ -62,7 +62,7 @@ Starting Nmap 7.94 ...
 
 ## The main menu
 
-The game-style menu at the top is built from `nav` in `_config.yml`: reorder the items, rename them, or change their `icon` (car, flag, wrench, slip, badge, radio). The current page is the highlighted one. Visitors can click an item, use the arrow buttons, or press the **left and right arrow keys** to move through it, and the page slides in that direction (in Chrome, Edge and Safari 18.2+; other browsers just load the page). The blackletter title above it is `menu_title`.
+The game-style menu at the top is built from `nav` in `_config.yml`: reorder the items, rename them, or change their `icon` (car, flag, wrench, slip, badge, radio). The current page is the highlighted one. Visitors can click an item, use the arrow buttons, or press the **left and right arrow keys** to move through it, and the page slides in that direction (in Chrome, Edge and Safari 18.2+; other browsers just load the page). Set `features.page_transitions: false` for instant switching with no animation. The blackletter title above it is `menu_title`.
 
 ## Switch parts of the site off
 
@@ -89,7 +89,7 @@ To tie your own menu link to a switch, add `feature: <name>` to it under `nav`, 
 | Name, tagline, photo, socials | `_config.yml` → `author` |
 | Handwriting font | `_config.yml` → `hand_font` |
 | Footer phrase (between the two flames) | `_config.yml` → `footer_text` |
-| Graffiti on the wall | `_config.yml` → `graffiti_strength` (0 hides it), artwork in `assets/img/graffiti.svg` |
+| Graffiti on the wall | `features.graffiti` in `_config.yml` turns it off; the image is `assets/img/graffiti.png` (source drawing in `scripts/art/graffiti.svg`) |
 | Unbeaten lines on the list | `_data/targets.yml` |
 | Certifications (pink slips) | `_data/certs.yml` |
 | Districts and their pin slots | `_data/districts.yml` (add one for a new category) |

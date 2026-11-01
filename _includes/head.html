@@ -20,10 +20,17 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="{{ card | absolute_url }}">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preload" href="{{ '/assets/fonts/Barlow-Regular.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/CoveredByYourGrace.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  {%- assign hand = site.hand_font | default: "Covered By Your Grace" %}
+  {%- if hand != "Covered By Your Grace" %}
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ site.hand_font | default: 'Covered By Your Grace' | replace: ' ', '+' }}&family=Pirata+One&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
-  <style>:root{--hand:"{{ site.hand_font | default: 'Covered By Your Grace' }}", "Comic Sans MS", cursive;--graffiti:{{ site.graffiti_strength | default: 0.16 }};}</style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ hand | replace: ' ', '+' }}&display=swap">
+  {%- endif %}
+  {%- unless site.features.page_transitions == false %}
+  <style>@view-transition{navigation:auto}</style>
+  {%- endunless %}
+  <style>:root{--hand:"{{ site.hand_font | default: 'Covered By Your Grace' }}", "Comic Sans MS", cursive}</style>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
   <link rel="apple-touch-icon" sizes="144x144" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
@@ -44,4 +51,13 @@
     })();
   </script>
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+  <script type="speculationrules">
+  {
+    "prerender": [
+      { "where": { "selector_matches": ".game-menu__arrow" }, "eagerness": "eager" },
+      { "where": { "selector_matches": ".game-menu__item" }, "eagerness": "moderate" }
+    ],
+    "prefetch": [{ "where": { "and": [{ "href_matches": "/*" }, { "not": { "href_matches": "/assets/*" } }] }, "eagerness": "moderate" }]
+  }
+  </script>
 </head>

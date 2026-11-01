@@ -23,9 +23,11 @@ author:
   github: https://github.com/Amen02kh
   linkedin: https://www.linkedin.com/in/amen-allah-khalfallah/
 
-# Drop your CV at this path. The "Download CV" buttons only appear once the file exists.
+# Your CV. Either drop the PDF at `path`, or paste a link (Google Drive, etc.) into `url`.
+# The CV buttons (menu, home, rap sheet, contact) appear as soon as one of them is set.
 cv:
   path: /assets/cv.pdf
+  url: ""                         # optional external link, used instead of the file
   updated: ""                     # e.g. "Nov 2026"
 
 # Contact form: create a free form at https://formspree.io and paste its id (the part after /f/).
@@ -41,6 +43,12 @@ contact:
 # "Covered By Your Grace", "Rock Salt", "Permanent Marker", "Reenie Beanie", "Gochi Hand"
 hand_font: "Covered By Your Grace"
 
+# Graffiti on the wall: 0 hides it, 0.16 is the default, 0.3 is loud
+graffiti_strength: 0.16
+
+# Left side of the footer on every page
+footer_text: "Wanted for breaking things to learn how they work."
+
 # ─────────────────────────────────────────────
 #  Feature switches
 # ─────────────────────────────────────────────
@@ -53,6 +61,7 @@ features:
   city_map: true
   pink_slips: true
   pursuit_log: true
+  cv: true
 
 # Top navigation. `feature` ties a link to a switch above.
 nav:

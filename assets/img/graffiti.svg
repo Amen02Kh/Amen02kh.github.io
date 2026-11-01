@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1600" viewBox="0 0 1400 1600" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <filter id="spray" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="6"/>
+      <feGaussianBlur stdDeviation="0.6"/>
+    </filter>
+    <filter id="haze"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+
+  <!-- faded overspray clouds -->
+  <g filter="url(#haze)" opacity="0.5">
+    <ellipse cx="300" cy="300" rx="190" ry="70" fill="#7a3a3a"/>
+    <ellipse cx="1080" cy="920" rx="170" ry="80" fill="#3c6a70"/>
+    <ellipse cx="420" cy="1320" rx="150" ry="60" fill="#8a7a3a"/>
+  </g>
+
+  <g filter="url(#spray)">
+    <!-- tag 1: loopy signature with underline and drips -->
+    <g stroke="#a04a46" stroke-width="11" opacity="0.75">
+      <path d="M140 330 C160 250 205 240 195 320 C188 370 230 380 248 300 C262 245 300 248 292 318 C286 372 330 372 346 296 C356 250 398 250 392 316 C388 360 430 362 450 300"/>
+      <path d="M120 372 C220 352 360 352 480 340"/>
+      <path d="M212 376 V436 M336 368 V418 M430 360 V448"/>
+    </g>
+    <g fill="#a04a46" opacity="0.75">
+      <circle cx="212" cy="442" r="7"/><circle cx="336" cy="424" r="6"/><circle cx="430" cy="454" r="7"/>
+    </g>
+
+    <!-- crown outline -->
+    <path d="M920 210 L950 140 L985 196 L1020 128 L1055 196 L1090 140 L1118 210 Z" stroke="#d9dccb" stroke-width="7" opacity="0.5"/>
+    <path d="M915 228 H1124" stroke="#d9dccb" stroke-width="7" opacity="0.5"/>
+
+    <!-- arrow -->
+    <path d="M1180 470 C1110 520 1060 560 990 580 M990 580 L1035 548 M990 580 L1034 606" stroke="#c9b45a" stroke-width="9" opacity="0.6"/>
+
+    <!-- tally marks -->
+    <g stroke="#d9dccb" stroke-width="6" opacity="0.45">
+      <path d="M140 760 V850 M170 756 V848 M200 760 V852 M230 758 V850 M124 830 L250 772"/>
+      <path d="M290 762 V852 M320 758 V850"/>
+    </g>
+
+    <!-- tag 2: blocky throw-up letters, outline only -->
+    <g stroke="#4f8a90" stroke-width="8" opacity="0.6">
+      <path d="M760 980 L760 860 L812 860 L842 900 L812 930 L842 980 Z"/>
+      <path d="M870 980 L870 860 M870 920 L930 860 M890 905 L940 980"/>
+      <path d="M965 980 L995 860 L1025 980 M975 940 H1015"/>
+      <path d="M1050 980 L1050 860 L1100 860 C1130 880 1130 920 1100 925 L1060 925"/>
+    </g>
+    <g stroke="#4f8a90" stroke-width="5" opacity="0.6">
+      <path d="M800 990 V1040 M1000 992 V1060"/>
+    </g>
+    <g fill="#4f8a90" opacity="0.6"><circle cx="800" cy="1046" r="6"/><circle cx="1000" cy="1066" r="6"/></g>
+
+    <!-- star and x marks -->
+    <path d="M520 1080 L540 1130 L592 1132 L550 1162 L566 1212 L520 1182 L474 1212 L490 1162 L448 1132 L500 1130 Z" stroke="#c9b45a" stroke-width="6" opacity="0.5"/>
+    <path d="M1230 1180 L1300 1250 M1300 1180 L1230 1250" stroke="#a04a46" stroke-width="10" opacity="0.6"/>
+    <path d="M90 1460 L140 1510 M140 1460 L90 1510" stroke="#d9dccb" stroke-width="7" opacity="0.4"/>
+
+    <!-- scribbled underline and squiggle -->
+    <path d="M640 520 C700 490 740 560 800 520 C850 490 890 560 950 520" stroke="#d9dccb" stroke-width="6" opacity="0.4"/>
+    <path d="M280 1330 C340 1300 380 1360 440 1330 C500 1300 540 1360 600 1330 C640 1310 680 1330 720 1320" stroke="#c9b45a" stroke-width="8" opacity="0.55"/>
+
+    <!-- circled dot target -->
+    <circle cx="1180" cy="1460" r="46" stroke="#d9dccb" stroke-width="6" opacity="0.4"/>
+    <circle cx="1180" cy="1460" r="10" fill="#d9dccb" opacity="0.4"/>
+  </g>
+</svg>

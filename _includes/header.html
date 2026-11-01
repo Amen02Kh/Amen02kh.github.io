@@ -13,6 +13,7 @@
         {%- if page.layout == "post" and item.url == "/#list" %}{% assign current = true %}{% endif %}
         <a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}</a>
       {%- endfor %}
+      {% include cv-button.html style="nav" %}
       {%- unless site.features.contact == false %}
       <a class="btn btn--primary site-nav__cta" href="{{ '/contact/' | relative_url }}"{% if page.url == "/contact/" %} aria-current="page"{% endif %}>Contact me</a>
       {%- endunless %}

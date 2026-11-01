@@ -71,6 +71,7 @@ features:
   city_map: true
   pink_slips: true
   pursuit_log: true
+  cv: true
 ```
 
 The section disappears from the menu, the city map and every button that links to it. Its pages show a "closed for now" notice and are hidden from search engines, so nothing breaks while it's off. Set it back to `true` and push to bring it back.
@@ -83,13 +84,15 @@ To tie your own menu link to a switch, add `feature: <name>` to it under `nav`, 
 |------|-------|
 | Name, tagline, photo, socials | `_config.yml` → `author` |
 | Handwriting font | `_config.yml` → `hand_font` |
+| Footer phrase | `_config.yml` → `footer_text` |
+| Graffiti on the wall | `_config.yml` → `graffiti_strength` (0 hides it), artwork in `assets/img/graffiti.svg` |
 | Unbeaten lines on the list | `_data/targets.yml` |
 | Certifications (pink slips) | `_data/certs.yml` |
 | Districts and their pin slots | `_data/districts.yml` (add one for a new category) |
 | Page markers on the map | `_data/map_pages.yml` |
 | Rap sheet text and facts | `about.md` |
 | Cheat sheets | `_cheatsheets/*.md` (front matter `title`, `stage`, `summary`, `updated`; commands in a Markdown table, in backticks) |
-| CV | put the file at `assets/cv.pdf` (buttons appear once it exists) and set `cv.updated` in `_config.yml` |
+| CV | put the PDF at `assets/cv.pdf`, or paste a link into `cv.url` in `_config.yml`. A **CV** button then appears in the menu, on the home page, the rap sheet and the contact page. Nothing shows until one of them is set. |
 | Contact form | create a free form at formspree.io and paste its id into `contact.formspree_id`. Without it the form opens the visitor's email app. |
 | Navigation | `_config.yml` → `nav` |
 

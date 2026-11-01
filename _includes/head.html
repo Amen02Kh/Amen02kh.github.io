@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ site.hand_font | default: 'Covered By Your Grace' | replace: ' ', '+' }}&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
-  <style>:root{--hand:"{{ site.hand_font | default: 'Covered By Your Grace' }}", "Comic Sans MS", cursive;}</style>
+  <style>:root{--hand:"{{ site.hand_font | default: 'Covered By Your Grace' }}", "Comic Sans MS", cursive;--graffiti:{{ site.graffiti_strength | default: 0.16 }};}</style>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
   <link rel="apple-touch-icon" sizes="144x144" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">

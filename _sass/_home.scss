@@ -98,3 +98,22 @@ a.pin:hover .pin__label, a.pin:focus-visible .pin__label { background: var(--cha
 }
 .city-map__legend li { display: flex; align-items: center; gap: 8px; }
 .swatch { width: 14px; height: 14px; border-radius: 2px; }
+
+/* ── list + map side by side, right after the intro ── */
+.home-board {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 56px 48px;
+  margin-top: 80px;
+}
+.home-board__list { flex: 1 1 400px; min-width: 0; }
+.home-board__map { flex: 1.5 1 560px; min-width: 0; }
+.home-board .the-list { font-size: clamp(24px, 2.3vw, 32px); }
+@media (min-width: 700px) {
+  .home-board .list-line, .home-board .list-line a { white-space: nowrap; }  /* one chalk line per entry */
+}
+.home-board .city-map { min-width: 600px; }
+.home-board__map > .muted { margin-top: 10px; }
+.home-board--solo .home-board__list { flex-basis: 100%; }
+.home-board--solo .the-list { font-size: clamp(28px, 3.6vw, 46px); }

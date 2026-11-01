@@ -17,7 +17,9 @@
 .site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; font-weight: 600; font-size: 16px; }
 .site-nav a { padding: 11px 14px; text-decoration: none; border-bottom: 2px solid transparent; }
 .site-nav a[aria-current="page"] { border-bottom-color: var(--accent); }
-.site-nav .site-nav__cta { margin-left: 8px; border-bottom: 0; }
+.site-nav .site-nav__cta { margin-left: 4px; border-bottom: 0; }
+.site-nav .site-nav__cv { margin-left: 8px; border-bottom: 1px solid var(--line-strong); }
+.site-nav .site-nav__cv:hover { border-color: var(--accent); }
 
 .read-progress { height: 3px; background: #2a332b; }
 .read-progress__bar { height: 3px; width: 0; background: var(--accent); }

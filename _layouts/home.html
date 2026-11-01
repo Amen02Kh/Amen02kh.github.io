@@ -25,20 +25,20 @@ layout: default
     </div>
   </section>
 
-  <section id="list" class="section" aria-labelledby="list-h">
-    <h2 id="list-h" class="chalk-heading">the list</h2>
-    {% include the-list.html %}
-    <p class="muted small">Crossed out means beaten and written up. Click a crossed-out line to read it.</p>
-  </section>
+  <div class="home-board{% if site.features.city_map == false %} home-board--solo{% endif %}">
+    <section id="list" class="home-board__list" aria-labelledby="list-h">
+      <h2 id="list-h" class="chalk-heading">the list</h2>
+      {% include the-list.html %}
+      <p class="muted small">Crossed out means beaten and written up. Click a crossed-out line to read it.</p>
+    </section>
 
-  {%- unless site.features.city_map == false %}
-  <section id="map" class="section" aria-labelledby="map-h">
-    <div class="section__head">
+    {%- unless site.features.city_map == false %}
+    <section id="map" class="home-board__map" aria-labelledby="map-h">
       <h2 id="map-h" class="chalk-heading">city map</h2>
+      {% include city-map.html %}
       <p class="muted small">Districts are categories. Every marker is a page.</p>
-    </div>
-    {% include city-map.html %}
-  </section>
-  {%- endunless %}
+    </section>
+    {%- endunless %}
+  </div>
 
 </div>
